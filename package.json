@@ -1,6 +1,6 @@
 {
   "name": "@oandriie/backstage-plugin-keycloak-backend",
-  "version": "2.0.20",
+  "version": "2.0.21",
   "description": "A Backend backend plugin for Keycloak",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -75,6 +75,7 @@
     "dist",
     "embedded",
     "config.d.ts",
+    "dist-dynamic",
     "dist-dynamic/*.*",
     "dist-dynamic/dist/**",
     "app-config.janus-idp.yaml"
