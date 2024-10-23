@@ -1,6 +1,6 @@
 {
   "name": "@oandriie/backstage-plugin-keycloak-backend",
-  "version": "2.0.21",
+  "version": "2.0.37",
   "description": "A Backend backend plugin for Keycloak",
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -28,8 +28,8 @@
   "scripts": {
     "build": "backstage-cli package build",
     "clean": "backstage-cli package clean",
-    "export-dynamic": "janus-cli package export-dynamic-plugin --embed-package @keycloak/keycloak-admin-client --embed-package inclusion",
-    "export-dynamic:clean": "janus-cli package export-dynamic-plugin --embed-package @keycloak/keycloak-admin-client --embed-package inclusion --clean",
+    "export-dynamic": "janus-cli package export-dynamic-plugin",
+    "export-dynamic:clean": "janus-cli package export-dynamic-plugin --clean",
     "lint:check": "backstage-cli package lint",
     "lint:fix": "backstage-cli package lint --fix",
     "postpack": "backstage-cli package postpack",
@@ -42,8 +42,9 @@
     "tsc": "tsc",
     "prettier:check": "prettier --ignore-unknown --check .",
     "prettier:fix": "prettier --ignore-unknown --write .",
-    "packages:version": "changeset version",
-    "packages:publish": "changeset publish"
+    "packages:version": "yarn run prerelease && changeset version && yarn export-dynamic",
+    "packages:publish": "changeset publish",
+    "prerelease": "echo 'node_modules' > dist-dynamic/.npmignore && echo '!package.json' >> dist-dynamic/.npmignore"
   },
   "dependencies": {
     "@backstage/backend-plugin-api": "^1.0.0",
@@ -73,7 +74,6 @@
   },
   "files": [
     "dist",
-    "embedded",
     "config.d.ts",
     "dist-dynamic",
     "dist-dynamic/*.*",
